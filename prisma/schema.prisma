@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  email    String @unique
+  password String
+  photo    String @default("https://cdn-icons-png.flaticon.com/512/17/17004.png")
+  posts    Post[]
+  coments  Comment[]
+  likes    Like[]
+
+  @@map("users")
+}
+
+model Post {
+  id         String   @id @default(uuid())
+  title      String
+  content    String
+  created_at DateTime @default(now())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  coments    Comment[]
+  likes      Like[]
+
+  @@map("posts")
+}
+
+model Comment{
+  id         String   @id @default(uuid())
+  content    String
+  created_at DateTime @default(now())
+  userId     String
+  postId     String
+  likes      Like[]
+  user       User     @relation(fields: [userId], references: [id])
+  post       Post     @relation(fields: [postId], references: [id])
+
+  @@map("comments")
+}
+
+model Like{
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  userId     String
+  postId     String?
+  commentId   String?
+  user       User     @relation(fields: [userId], references: [id])
+  post       Post?     @relation(fields: [postId], references: [id])
+  coment     Comment?   @relation(fields: [commentId], references: [id])
+
+  @@map("likes")
+}
