@@ -9,9 +9,9 @@ export async function getAll(request: FastifyRequest,reply: FastifyReply) {
         const prismaUserRepository = new PrismaUsersRepository()
         const getAllUserUseCase = new GetAllUserUseCase(prismaUserRepository)
 
-        const users = await getAllUserUseCase.execute()
+        const {user} = await getAllUserUseCase.execute()
 
-        return reply.status(200).send({ users })
+        return reply.status(200).send(user)
 
     } catch (err) {
         if (err instanceof ResourceNotFoundError){

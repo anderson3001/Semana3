@@ -15,11 +15,11 @@ export async function getByUser(request: FastifyRequest,reply: FastifyReply) {
         const prismaPostRepository = new PrismaPostsRepository()
         const getPostByUserUseCase = new GetPostByUserUseCase(prismaPostRepository)
 
-        const post = await getPostByUserUseCase.execute({
+        const {post} = await getPostByUserUseCase.execute({
             userId
         })
 
-        return reply.status(200).send({ post })
+        return reply.status(200).send( post )
 
     } catch (err) {
         if (err instanceof ResourceNotFoundError){

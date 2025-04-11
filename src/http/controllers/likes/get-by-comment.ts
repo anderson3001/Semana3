@@ -16,11 +16,11 @@ export async function getByComment(request: FastifyRequest,reply: FastifyReply) 
         const prismaLikeRepository = new PrismaLikesRepository()
         const getLikeByCommentUseCase = new GetLikeByCommentUseCase(prismaLikeRepository)
 
-        const like = await getLikeByCommentUseCase.execute({
+        const {like} = await getLikeByCommentUseCase.execute({
             commentId
         })
 
-        return reply.status(200).send({ like })
+        return reply.status(200).send(like)
 
     } catch (err) {
         if (err instanceof ResourceNotFoundError){

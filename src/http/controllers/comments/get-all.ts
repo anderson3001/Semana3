@@ -9,9 +9,9 @@ export async function getAll(request: FastifyRequest,reply: FastifyReply) {
         const prismaCommentRepository = new PrismaCommentsRepository()
         const getAllCommentsUseCase = new GetAllCommentsUseCase(prismaCommentRepository)
 
-        const comments = await getAllCommentsUseCase.execute()
+        const {comment}= await getAllCommentsUseCase.execute()
 
-        return reply.status(200).send({ comments })
+        return reply.status(200).send(comment)
 
     } catch (err) {
         if (err instanceof ResourceNotFoundError){

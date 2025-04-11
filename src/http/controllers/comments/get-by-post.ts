@@ -1,8 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { ResourceNotFoundError } from "../../../use-cases/errors/resource-not-found-error"
-import { PrismaLikesRepository } from "../../../repositories/prisma/prisma-likes-repository"
-import { GetLikeByPostUseCase } from "../../../use-cases/get-like-by-post-use-case"
 import { PrismaCommentsRepository } from "../../../repositories/prisma/prisma-comments-repository"
 import { GetCommentByPostUseCase } from "../../../use-cases/get-comment-by-post-use-case"
 
@@ -17,11 +15,11 @@ export async function getByPost(request: FastifyRequest,reply: FastifyReply) {
         const prismaCommentsRepository = new PrismaCommentsRepository()
         const getCommentByPostUseCase = new GetCommentByPostUseCase(prismaCommentsRepository)
 
-        const comment = await getCommentByPostUseCase.execute({
+        const {comment} = await getCommentByPostUseCase.execute({
             postId
         })
 
-        return reply.status(200).send({ comment })
+        return reply.status(200).send(comment)
 
     } catch (err) {
         if (err instanceof ResourceNotFoundError){

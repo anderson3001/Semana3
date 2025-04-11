@@ -15,11 +15,11 @@ export async function get(request: FastifyRequest,reply: FastifyReply) {
         const prismaUserRepository = new PrismaUsersRepository()
         const getUserUseCase = new GetUserUseCase(prismaUserRepository)
 
-        const user = await getUserUseCase.execute({
+        const {user} = await getUserUseCase.execute({
             userId    
         })
 
-        return reply.status(200).send({ user })
+        return reply.status(200).send(user)
 
     } catch (err) {
         if (err instanceof ResourceNotFoundError){

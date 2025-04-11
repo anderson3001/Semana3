@@ -17,11 +17,11 @@ export async function getByUser(request: FastifyRequest,reply: FastifyReply) {
         const prismaCommentsRepository = new PrismaCommentsRepository()
         const getCommentsByUserUseCase = new GetCommentByUserUseCase(prismaCommentsRepository)
 
-        const comment = await getCommentsByUserUseCase.execute({
+        const {comment} = await getCommentsByUserUseCase.execute({
             userId
         })
 
-        return reply.status(200).send({ comment })
+        return reply.status(200).send( comment)
 
     } catch (err) {
         if (err instanceof ResourceNotFoundError){

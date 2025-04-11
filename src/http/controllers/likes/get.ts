@@ -15,11 +15,11 @@ export async function get(request: FastifyRequest,reply: FastifyReply) {
         const prismaLikeRepository = new PrismaLikesRepository()
         const getLikeUseCase = new GetLikeUseCase(prismaLikeRepository)
 
-        const like = await getLikeUseCase.execute({
+        const {like} = await getLikeUseCase.execute({
             likeId    
         })
 
-        return reply.status(200).send({ like })
+        return reply.status(200).send(like)
 
     } catch (err) {
         if (err instanceof ResourceNotFoundError){
