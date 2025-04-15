@@ -8,7 +8,8 @@ export class PrismaPostsRepository implements PostsRepository {
           where: {
             id: {
               in: postIds,
-            }
+            },
+            deleted_at: null
           },
         });
     
@@ -18,13 +19,18 @@ export class PrismaPostsRepository implements PostsRepository {
     async findByUserId(userId: string): Promise<Post[]> {
         const posts = await prisma.post.findMany({
             where: {
-                userId
+                userId,
+                deleted_at: null
             }
         })
         return posts
     }
     async findAll(): Promise<Post[]> {
-            const posts = await prisma.post.findMany()
+            const posts = await prisma.post.findMany({
+                where: {
+                    deleted_at: null
+                }
+            })
             return posts
         }
     async update(id: string, data: PostUpdateInput): Promise<Post | null> {
@@ -51,9 +57,10 @@ export class PrismaPostsRepository implements PostsRepository {
         return post 
     }
     async findById(id: string){
-        const post = await prisma.post.findUnique({
+        const post = await prisma.post.findFirst({
             where: {
-                id
+                id,
+                deleted_at: null
             }
         })
         return post 

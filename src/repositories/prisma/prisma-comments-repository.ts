@@ -11,7 +11,11 @@ export class PrismaCommentsRepository {
         return comment
     }
     async findAll(): Promise<Comment[]> {
-        const comments = await prisma.comment.findMany()
+        const comments = await prisma.comment.findMany({
+            where: {
+                deleted_at: null
+            }
+        })
         return comments
     }
     async delete(id: string): Promise<Comment | null> {
@@ -26,9 +30,10 @@ export class PrismaCommentsRepository {
         return comment 
     }
     async findById(id: string){
-        const comment = await prisma.comment.findUnique({
+        const comment = await prisma.comment.findFirst({
             where: {
-                id
+                id,
+                deleted_at: null
             }
         })
         return comment 
@@ -47,7 +52,8 @@ export class PrismaCommentsRepository {
     async findByUserId(userId: string): Promise<Comment[]> {
         const comments = await prisma.comment.findMany({
             where: {
-                userId
+                userId,
+                deleted_at: null
             }
         })
         return comments
@@ -55,7 +61,8 @@ export class PrismaCommentsRepository {
     async findByPostId(postId: string): Promise<Comment[]> {
         const comments = await prisma.comment.findMany({
             where: {
-                postId
+                postId,
+                deleted_at: null
             }
         })
         return comments
