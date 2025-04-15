@@ -12,4 +12,5 @@ export interface PostsRepository {
     update(id: string, data: PostUpdateInput): Promise<Post | null>
     findAll(): Promise<Post[]>
     findByUserId(userId: string): Promise<Post[]>
+    findManyById(postIds: string[]): Promise<Post[]>;
 }

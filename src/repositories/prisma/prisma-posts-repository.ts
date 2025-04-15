@@ -3,6 +3,18 @@ import { prisma } from "../../lib/prisma";
 import { PostsRepository, PostUpdateInput } from "../posts-repository";
 
 export class PrismaPostsRepository implements PostsRepository {
+    async findManyById(postIds: string[]): Promise<Post[]> {
+        const posts = await prisma.post.findMany({//pros mais curtidos da semana
+          where: {
+            id: {
+              in: postIds,
+            }
+          },
+        });
+    
+        return posts;
+      }
+    
     async findByUserId(userId: string): Promise<Post[]> {
         const posts = await prisma.post.findMany({
             where: {

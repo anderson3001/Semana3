@@ -7,4 +7,5 @@ export interface LikesRepository {
     findByUserId(userId: string): Promise<Like[]>
     findByPostId(postId: string): Promise<Like[]>
     findByCommentId(commentId: string): Promise<Like[]>
+    getMostLikedPostIds(limit: number): Promise<(string | number)[][]>
 }

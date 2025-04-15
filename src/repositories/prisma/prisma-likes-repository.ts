@@ -49,4 +49,26 @@ export class PrismaLikesRepository implements LikesRepository {
         })
         return likes
     }
+    async getMostLikedPostIds(limit: number) {
+        const topPosts = await prisma.like.groupBy({
+            by: ['postId'],
+            _count: {
+                postId: true,
+            },
+            orderBy: {
+                _count: {
+                    postId: 'desc',
+                },
+            },
+            take: limit,
+        });
+        
+        const postIds = topPosts.map((like) => {
+            if (like.postId) return [like.postId, like._count.postId];
+          });
+      
+          const filteredLikes = postIds.filter((like) => !!like);
+      
+          return filteredLikes;
+    }
 }
