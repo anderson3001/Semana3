@@ -1,5 +1,5 @@
 import { User } from "@prisma/client"
-import { UsersRepository } from "../repositories/users-repostory"
+import { UsersRepository } from "../../repositories/users-repostory"
 
 interface GetUserUseCaseResponse {
     user: User[]

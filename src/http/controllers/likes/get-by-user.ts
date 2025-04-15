@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { ResourceNotFoundError } from "../../../use-cases/@errors/resource-not-found-error"
 import { PrismaLikesRepository } from "../../../repositories/prisma/prisma-likes-repository"
-import { GetLikeByUserUseCase } from "../../../use-cases/get-like-by-user-use-case"
+import { GetLikeByUserUseCase } from "../../../use-cases/likes/get-like-by-user-use-case"
 
 export async function getByUser(request: FastifyRequest,reply: FastifyReply) {
 

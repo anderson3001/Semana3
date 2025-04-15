@@ -1,6 +1,6 @@
 import { User } from "@prisma/client"
-import { UsersRepository, UserUpdateInput } from "../repositories/users-repostory"
-import { ResourceNotFoundError } from "./errors/resource-not-found-error"
+import { UsersRepository, UserUpdateInput } from "../../repositories/users-repostory"
+import { ResourceNotFoundError } from "../@errors/resource-not-found-error"
 import { compare, hash } from "bcryptjs"
 
 interface UpdateUserUseCaseRequest {

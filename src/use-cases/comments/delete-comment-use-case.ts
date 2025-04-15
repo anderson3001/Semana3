@@ -1,6 +1,6 @@
 import { Comment } from "@prisma/client"
-import { ResourceNotFoundError } from "./errors/resource-not-found-error"
-import { CommentsRepository } from "../repositories/comments-repostirory"
+import { ResourceNotFoundError } from "../@errors/resource-not-found-error"
+import { CommentsRepository } from "../../repositories/comments-repostirory"
 
 interface DeleteCommentUseCaseRequest {
     commentId: string

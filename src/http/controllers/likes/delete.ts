@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { ResourceNotFoundError } from "../../../use-cases/@errors/resource-not-found-error"
 import { PrismaLikesRepository } from "../../../repositories/prisma/prisma-likes-repository"
-import { DeleteLikeUseCase } from "../../../use-cases/delete-like-use-case"
+import { DeleteLikeUseCase } from "../../../use-cases/likes/delete-like-use-case"
 
 
 export async function deleteLike(request: FastifyRequest,reply: FastifyReply) {

@@ -1,10 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { ResourceNotFoundError } from "../../../use-cases/@errors/resource-not-found-error"
-import { PrismaPostsRepository } from "../../../repositories/prisma/prisma-posts-repository"
-import { UpdatePostUseCase } from "../../../use-cases/update-post-use-case"
 import { PrismaCommentsRepository } from "../../../repositories/prisma/prisma-comments-repository"
-import { UpdateCommentUseCase } from "../../../use-cases/update-comment-use-case"
+import { UpdateCommentUseCase } from "../../../use-cases/comments/update-comment-use-case"
 
 export async function update(request: FastifyRequest,reply: FastifyReply) {
     const updateParamsSchema = z.object({

@@ -1,7 +1,6 @@
 import { Like, Post } from "@prisma/client"
-import { ResourceNotFoundError } from "./errors/resource-not-found-error"
-import { PostsRepository } from "../repositories/posts-repository"
-import { LikesRepository } from "../repositories/likes-repository"
+import { ResourceNotFoundError } from "../@errors/resource-not-found-error"
+import { LikesRepository } from "../../repositories/likes-repository"
 
 interface GetLikeUseCaseRequest {
     likeId: string

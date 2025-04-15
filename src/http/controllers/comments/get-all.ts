@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { ResourceNotFoundError } from "../../../use-cases/@errors/resource-not-found-error"
 import { PrismaCommentsRepository } from "../../../repositories/prisma/prisma-comments-repository"
-import { GetAllCommentsUseCase } from "../../../use-cases/get-all-comments-use-case"
+import { GetAllCommentsUseCase } from "../../../use-cases/comments/get-all-comments-use-case"
 
 export async function getAll(request: FastifyRequest,reply: FastifyReply) {
     

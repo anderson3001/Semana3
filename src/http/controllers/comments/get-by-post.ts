@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { ResourceNotFoundError } from "../../../use-cases/@errors/resource-not-found-error"
 import { PrismaCommentsRepository } from "../../../repositories/prisma/prisma-comments-repository"
-import { GetCommentByPostUseCase } from "../../../use-cases/get-comment-by-post-use-case"
+import { GetCommentByPostUseCase } from "../../../use-cases/comments/get-comment-by-post-use-case"
 
 export async function getByPost(request: FastifyRequest,reply: FastifyReply) {
 

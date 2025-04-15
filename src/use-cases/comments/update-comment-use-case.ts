@@ -1,6 +1,5 @@
-import { ResourceNotFoundError } from "./errors/resource-not-found-error"
-import { PostsRepository, PostUpdateInput } from "../repositories/posts-repository"
-import { CommentsRepository, CommentUpdateInput } from "../repositories/comments-repostirory"
+import { ResourceNotFoundError } from "../@errors/resource-not-found-error"
+import { CommentsRepository, CommentUpdateInput } from "../../repositories/comments-repostirory"
 import { Comment } from "@prisma/client"
 
 interface UpdateCommentUseCaseRequest {

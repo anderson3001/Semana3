@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { ResourceNotFoundError } from "../../../use-cases/@errors/resource-not-found-error"
 import { PrismaPostsRepository } from "../../../repositories/prisma/prisma-posts-repository"
-import { DeletePostUseCase } from "../../../use-cases/delete-post-use-case"
+import { DeletePostUseCase } from "../../../use-cases/posts/delete-post-use-case"
 
 export async function deletePost(request: FastifyRequest,reply: FastifyReply) {
     const getParamsSchema = z.object({//não muda pois são parametros da url

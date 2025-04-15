@@ -1,6 +1,6 @@
 import { Post } from "@prisma/client"
-import { ResourceNotFoundError } from "./errors/resource-not-found-error"
-import { PostsRepository } from "../repositories/posts-repository"
+import { PostsRepository } from "../../repositories/posts-repository"
+import { ResourceNotFoundError } from "../@errors/resource-not-found-error"
 
 interface GetPostUseCaseRequest {
     userId: string

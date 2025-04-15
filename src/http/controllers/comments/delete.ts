@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { ResourceNotFoundError } from "../../../use-cases/@errors/resource-not-found-error"
 import { PrismaCommentsRepository } from "../../../repositories/prisma/prisma-comments-repository"
-import { DeleteCommentUseCase } from "../../../use-cases/delete-comment-use-case"
+import { DeleteCommentUseCase } from "../../../use-cases/comments/delete-comment-use-case"
 
 export async function deleteComment(request: FastifyRequest,reply: FastifyReply) {
     const getParamsSchema = z.object({//não muda pois são parametros da url

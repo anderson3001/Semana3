@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { ResourceNotFoundError } from "../../../use-cases/@errors/resource-not-found-error"
 import { PrismaPostsRepository } from "../../../repositories/prisma/prisma-posts-repository"
-import { GetPostUseCase } from "../../../use-cases/get-post-use-case"
+import { GetPostUseCase } from "../../../use-cases/posts/get-post-use-case"
 
 export async function get(request: FastifyRequest,reply: FastifyReply) {
     const getParamsSchema = z.object({

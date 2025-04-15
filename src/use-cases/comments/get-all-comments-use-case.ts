@@ -1,5 +1,5 @@
 import { Comment } from "@prisma/client"
-import { CommentsRepository } from "../repositories/comments-repostirory"
+import { CommentsRepository } from "../../repositories/comments-repostirory"
 
 interface GetAllCommentsUseCaseResponse {
     comment: Comment[]

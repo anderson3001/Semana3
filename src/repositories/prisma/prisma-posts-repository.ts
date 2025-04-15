@@ -40,19 +40,12 @@ export class PrismaPostsRepository implements PostsRepository {
         return post
     }
     async delete(id: string): Promise<Post | null> {
-        const likes = await prisma.like.deleteMany({//pra deletar os likes antes de deletar o post
-            where: {
-                postId: id
-            }
-        })
-        const comments = await prisma.comment.deleteMany({//pra deletar os comments antes de deletar o post
-            where: {
-                postId: id
-            }
-        })
-        const post = await prisma.post.delete({
+        const post = await prisma.post.update({
             where: {
                 id
+            },
+            data: {
+                deleted_at: new Date()
             }
         })
         return post 

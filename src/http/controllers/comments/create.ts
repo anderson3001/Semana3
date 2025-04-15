@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { PrismaCommentsRepository } from "../../../repositories/prisma/prisma-comments-repository"
-import { CreateCommentUseCase } from "../../../use-cases/create-comment-use-case"
+import { CreateCommentUseCase } from "../../../use-cases/comments/create-comment-use-case"
 import { prisma } from "../../../lib/prisma"
 
 export async function create(request: FastifyRequest,reply: FastifyReply) {

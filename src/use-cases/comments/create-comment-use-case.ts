@@ -1,6 +1,6 @@
 import { Comment} from "@prisma/client"
-import { CommentsRepository } from "../repositories/comments-repostirory"
-import { newCommentEmail } from "../services/email"
+import { CommentsRepository } from "../../repositories/comments-repostirory"
+import { newCommentEmail } from "../../services/email"
 
 interface CreateCommentUseCaseRequest {
     content: string,

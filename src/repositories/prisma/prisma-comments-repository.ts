@@ -15,14 +15,12 @@ export class PrismaCommentsRepository {
         return comments
     }
     async delete(id: string): Promise<Comment | null> {
-        const likes = await prisma.like.deleteMany({//pra deletar os likes antes de deletar o comentario
-            where: {
-                commentId: id
-            }
-        })
-        const comment = await prisma.comment.delete({
+        const comment = await prisma.comment.update({
             where: {
                 id
+            },
+            data: {
+                deleted_at: new Date()
             }
         })
         return comment 

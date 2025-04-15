@@ -1,10 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { ResourceNotFoundError } from "../../../use-cases/@errors/resource-not-found-error"
-import { PrismaLikesRepository } from "../../../repositories/prisma/prisma-likes-repository"
-import { GetLikeByUserUseCase } from "../../../use-cases/get-like-by-user-use-case"
 import { PrismaCommentsRepository } from "../../../repositories/prisma/prisma-comments-repository"
-import { GetCommentByUserUseCase } from "../../../use-cases/get-comment-by-user-use-case"
+import { GetCommentByUserUseCase } from "../../../use-cases/comments/get-comment-by-user-use-case"
 
 export async function getByUser(request: FastifyRequest,reply: FastifyReply) {
 
