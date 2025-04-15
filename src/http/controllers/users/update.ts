@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
 import { PrismaUsersRepository } from "../../../repositories/prisma/prisma-users-repository"
-import { ResourceNotFoundError } from "../../../use-cases/errors/resource-not-found-error"
+import { ResourceNotFoundError } from "../../../use-cases/@errors/resource-not-found-error"
 import { UpdateUserUseCase } from "../../../use-cases/update-user-use-case"
 
 export async function update(request: FastifyRequest,reply: FastifyReply) {

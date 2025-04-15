@@ -1,8 +1,8 @@
 import { compare, hash } from "bcryptjs"
-import { UsersRepository } from "../repositories/users-repostory"
-import { UserAlreadyExists } from "./errors/user-already-exists-error"
+import { UsersRepository } from "../../repositories/users-repostory"
+import { UserAlreadyExists } from "../@errors/user-already-exists-error"
 import { User } from "@prisma/client"
-import { InvalidCredentialsError } from "./errors/invalid-credentials-error"
+import { InvalidCredentialsError } from "../@errors/invalid-credentials-error"
 
 interface AuthenticateUseCaseRequest {
     email: string
