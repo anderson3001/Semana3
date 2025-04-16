@@ -1,6 +1,6 @@
 import { Post, Prisma } from "@prisma/client";
 import { prisma } from "../../lib/prisma";
-import { PostsRepository, PostUpdateInput } from "../posts-repository";
+import { PaginatedPosts, PostsRepository, PostUpdateInput } from "../posts-repository";
 
 export class PrismaPostsRepository implements PostsRepository {
     async findManyById(postIds: string[]): Promise<Post[]> {
@@ -25,11 +25,13 @@ export class PrismaPostsRepository implements PostsRepository {
         })
         return posts
     }
-    async findAll(): Promise<Post[]> {
+    async findAll(paginatedPosts: PaginatedPosts): Promise<Post[]> {
             const posts = await prisma.post.findMany({
                 where: {
                     deleted_at: null
-                }
+                },
+                take: paginatedPosts.limit,
+                skip: (paginatedPosts.page - 1) * paginatedPosts.limit,
             })
             return posts
         }
