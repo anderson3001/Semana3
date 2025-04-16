@@ -1,7 +1,6 @@
 import { Comment, Prisma } from "@prisma/client";
 import { prisma } from "../../lib/prisma";
-import { PostUpdateInput } from "../posts-repository";
-import { CommentUpdateInput } from "../comments-repostirory";
+import { CommentUpdateInput, PaginatedComments } from "../comments-repostirory";
 
 export class PrismaCommentsRepository {
     async create(data: Prisma.CommentUncheckedCreateInput) {
@@ -10,11 +9,13 @@ export class PrismaCommentsRepository {
         })
         return comment
     }
-    async findAll(): Promise<Comment[]> {
+    async findAll(paginatedComments: PaginatedComments): Promise<Comment[]> {
         const comments = await prisma.comment.findMany({
             where: {
                 deleted_at: null
-            }
+            },
+            take: paginatedComments.limit,
+            skip: (paginatedComments.page - 1) * paginatedComments.limit,
         })
         return comments
     }

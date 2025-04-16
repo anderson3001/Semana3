@@ -6,7 +6,7 @@ import { z } from "zod";
 import { GetPostUseCase } from "../../../use-cases/posts/get-post-use-case";
 
 export async function getAll(request: FastifyRequest,reply: FastifyReply) {
-    const getAllComentsQuerySchema = z.object({
+    const getAllPostsQuerySchema = z.object({
         page: z.coerce
           .number()
           .int()
@@ -21,7 +21,7 @@ export async function getAll(request: FastifyRequest,reply: FastifyReply) {
           .optional()
           .default(10),
       });
-    const query = getAllComentsQuerySchema.parse(request.query);
+    const query = getAllPostsQuerySchema.parse(request.query);
     
     try {
         const prismaPostRepository = new PrismaPostsRepository()
