@@ -67,4 +67,13 @@ export class PrismaCommentsRepository {
         })
         return comments
     }
+    async removeDeletedComments(){
+        const deletedComments = await prisma.comment.deleteMany({
+            where: {
+                deleted_at: {
+                    not: null
+                }
+            }
+        })
+    }
 }

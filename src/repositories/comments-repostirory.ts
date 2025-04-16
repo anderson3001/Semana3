@@ -13,4 +13,5 @@ export interface CommentsRepository {
     update(id: string, data: CommentUpdateInput): Promise<Comment | null>
     findByUserId(userId: string): Promise<Comment[]>
     findByPostId(postId: string): Promise<Comment[]>
+    removeDeletedComments(): Promise<void>
 }

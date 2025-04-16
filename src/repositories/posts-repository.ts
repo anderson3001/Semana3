@@ -13,4 +13,5 @@ export interface PostsRepository {
     findAll(): Promise<Post[]>
     findByUserId(userId: string): Promise<Post[]>
     findManyById(postIds: string[]): Promise<Post[]>;
+    removeDeletedPosts(): Promise<void>;
 }

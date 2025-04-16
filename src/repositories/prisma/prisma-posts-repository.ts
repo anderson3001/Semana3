@@ -71,4 +71,13 @@ export class PrismaPostsRepository implements PostsRepository {
         }) 
         return posts
     }
+    async removeDeletedPosts() {
+        const deletedPosts = await prisma.post.deleteMany({
+            where: {
+                deleted_at: {
+                    not: null,
+                }
+            }
+        })
+    }
 }
