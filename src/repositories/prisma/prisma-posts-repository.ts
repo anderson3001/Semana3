@@ -33,7 +33,7 @@ export class PrismaPostsRepository implements PostsRepository {
         if (orderBy === 'LIKES') {
           order = { likes: { _count: 'desc' } };
         } else if (orderBy === 'COMMENTS') {
-          order = { coments: { _count: 'desc' } };
+          order = { comments: { _count: 'desc' } };
         }
 
         const posts = await prisma.post.findMany({
@@ -51,7 +51,7 @@ export class PrismaPostsRepository implements PostsRepository {
                 _count: {
                     select: {
                         likes: true,
-                        coments: true
+                        comments: true
                     }
                 }
             }
