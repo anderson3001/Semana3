@@ -4,6 +4,8 @@ import { PostsRepository } from "../../repositories/posts-repository"
 interface GetAllPostsUseCaseRequest {
     page: number;
     limit: number;
+    title?: string;
+    content?: string;
   }
 interface GetPostUseCaseResponse {
     post: Post[]

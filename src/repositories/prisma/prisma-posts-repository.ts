@@ -26,15 +26,21 @@ export class PrismaPostsRepository implements PostsRepository {
         return posts
     }
     async findAll(paginatedPosts: PaginatedPosts): Promise<Post[]> {
-            const posts = await prisma.post.findMany({
-                where: {
-                    deleted_at: null
-                },
-                take: paginatedPosts.limit,
-                skip: (paginatedPosts.page - 1) * paginatedPosts.limit,
-            })
-            return posts
-        }
+        const { page, limit, title, content } = paginatedPosts;//desconstruindo pra usar ali no AND
+
+        const posts = await prisma.post.findMany({
+            where: {
+                deleted_at: null,
+                AND: [
+                    title ? { title: { contains: title, mode: 'insensitive' } } : {},
+                    content ? { content: { contains: content, mode: 'insensitive' } } : {}
+                ]
+            },
+            take: paginatedPosts.limit,
+            skip: (paginatedPosts.page - 1) * paginatedPosts.limit,
+        })
+        return posts
+    }
     async update(id: string, data: PostUpdateInput): Promise<Post | null> {
         const post = await prisma.post.update({
             where: {

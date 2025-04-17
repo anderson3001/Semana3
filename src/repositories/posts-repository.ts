@@ -7,6 +7,9 @@ export interface PostUpdateInput {
 export interface PaginatedPosts {
     page: number;
     limit: number;
+
+    title?: string;
+    content?: string;
 }
 
 export interface PostsRepository {

@@ -20,6 +20,9 @@ export async function getAll(request: FastifyRequest,reply: FastifyReply) {
           .positive()
           .optional()
           .default(10),
+
+        title: z.string().optional(),
+        content: z.string().optional()
       });
     const query = getAllPostsQuerySchema.parse(request.query);
     
