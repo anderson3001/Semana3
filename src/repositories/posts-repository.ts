@@ -10,6 +10,8 @@ export interface PaginatedPosts {
 
     title?: string;
     content?: string;
+
+    orderBy?: "LIKES" | "COMMENTS" | "LATEST"
 }
 
 export interface PostsRepository {

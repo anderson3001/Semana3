@@ -22,7 +22,8 @@ export async function getAll(request: FastifyRequest,reply: FastifyReply) {
           .default(10),
 
         title: z.string().optional(),
-        content: z.string().optional()
+        content: z.string().optional(),
+        orderBy: z.enum(["LIKES", "COMMENTS", "LATEST"]).optional()
       });
     const query = getAllPostsQuerySchema.parse(request.query);
     
