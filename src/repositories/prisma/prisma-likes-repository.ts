@@ -50,8 +50,15 @@ export class PrismaLikesRepository implements LikesRepository {
         return likes
     }
     async getMostLikedPostIds(limit: number) {
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
         const topPosts = await prisma.like.groupBy({
             by: ['postId'],
+            where: {
+                created_at: {
+                  gte: oneWeekAgo,
+                },
+              },
             _count: {
                 postId: true,
             },
